@@ -5,14 +5,14 @@ const mobileMenu = document.querySelector(".mobile-menu")
 desktopClickMenu.addEventListener("click", toggleMenuDesktop)
 mobileClickMenu.addEventListener("click", toggleMenuMobile)
 const shoppingCartIcon = document.querySelector(".navbar-shopping-cart")
-const aside = document.querySelector(".product-detail")
-shoppingCartIcon.addEventListener("click", toggleAside)
+const shoppingCart = document.querySelector(".shopping-cart")
+shoppingCartIcon.addEventListener("click", toggleShoppingCart)
 
 const cardsContainer = document.querySelector(".cards-container")
 
 function toggleMenuDesktop(){
-    if(!aside.classList.contains("inactive")){
-        aside.classList.toggle("inactive")
+    if(!shoppingCart.classList.contains("inactive")){
+        shoppingCart.classList.toggle("inactive")
         if(desktopMenu.classList.contains("inactive")){
             desktopMenu.classList.toggle("inactive")
         }
@@ -21,8 +21,8 @@ function toggleMenuDesktop(){
     }
 }
 function toggleMenuMobile(){
-    if(!aside.classList.contains("inactive")){
-        aside.classList.toggle("inactive")
+    if(!shoppingCart.classList.contains("inactive")){
+        shoppingCart.classList.toggle("inactive")
         if(mobileMenu.classList.contains("inactive")){
             mobileMenu.classList.toggle("inactive")
         }
@@ -30,14 +30,14 @@ function toggleMenuMobile(){
         mobileMenu.classList.toggle("inactive")
     }
 }
-function toggleAside(){
+function toggleShoppingCart(){
     if(!mobileMenu.classList.contains("inactive")){
         mobileMenu.classList.toggle("inactive")
     }
     if(!desktopMenu.classList.contains("inactive")){
         desktopMenu.classList.toggle("inactive")
     }
-    aside.classList.toggle("inactive")
+    shoppingCart.classList.toggle("inactive")
 }
 
 function renderProducts(arr){
