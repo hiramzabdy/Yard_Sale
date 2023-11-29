@@ -2,11 +2,15 @@ const desktopClickMenu = document.querySelector(".navbar-email")
 const mobileClickMenu = document.querySelector(".menu")
 const desktopMenu = document.querySelector(".desktop-menu")
 const mobileMenu = document.querySelector(".mobile-menu")
-desktopClickMenu.addEventListener("click", toggleMenuDesktop)
-mobileClickMenu.addEventListener("click", toggleMenuMobile)
 const shoppingCartIcon = document.querySelector(".navbar-shopping-cart")
 const shoppingCart = document.querySelector(".shopping-cart")
+const productDetailContainer = document.querySelector(".one-product-detail")
+const productDetailCloseIcon = document.querySelector(".one-product-detail-close")
+
+desktopClickMenu.addEventListener("click", toggleMenuDesktop)
+mobileClickMenu.addEventListener("click", toggleMenuMobile)
 shoppingCartIcon.addEventListener("click", toggleShoppingCart)
+productDetailCloseIcon.addEventListener("click", closeProductDetails)
 
 const cardsContainer = document.querySelector(".cards-container")
 
@@ -19,6 +23,7 @@ function toggleMenuDesktop(){
     }else{
         desktopMenu.classList.toggle("inactive")
     }
+    productDetailContainer.classList.add("inactive")
 }
 function toggleMenuMobile(){
     if(!shoppingCart.classList.contains("inactive")){
@@ -29,6 +34,7 @@ function toggleMenuMobile(){
     }else{
         mobileMenu.classList.toggle("inactive")
     }
+    productDetailContainer.classList.add("inactive")
 }
 function toggleShoppingCart(){
     if(!mobileMenu.classList.contains("inactive")){
@@ -38,6 +44,16 @@ function toggleShoppingCart(){
         desktopMenu.classList.toggle("inactive")
     }
     shoppingCart.classList.toggle("inactive")
+    productDetailContainer.classList.add("inactive")
+}
+function openProductDetails(){
+    productDetailContainer.classList.remove("inactive")
+    mobileMenu.classList.add("inactive")
+    desktopMenu.classList.add("inactive")
+    shoppingCart.classList.add("inactive")
+}
+function closeProductDetails(){
+    productDetailContainer.classList.add("inactive")
 }
 
 function renderProducts(arr){
@@ -49,6 +65,7 @@ function renderProducts(arr){
         let productImg = document.createElement("img")
         productImg.setAttribute("src", product.image)
         productImg.setAttribute("alt", product.name)
+        productImg.addEventListener("click", openProductDetails)
     
         let productInfo = document.createElement("div")
         productInfo.classList.add("product-info")
@@ -76,7 +93,7 @@ function renderProducts(arr){
         cardsContainer.appendChild(productCard)
     }
     //...I did it both ways
-    arr.forEach((product) => {
+    /*arr.forEach((product) => {
         productCard = `
             <div class="card">
             <img src="${product.image}" alt="${product.name}">
@@ -90,11 +107,11 @@ function renderProducts(arr){
                 </figure>
             </div>    
             </div>
-        `
-        cardsContainer.innerHTML += productCard   
-    }
-    )
-    }
+            `
+            cardsContainer.innerHTML += productCard   
+        }
+    )*/
+}
 
 const products = []
 products.push({

@@ -290,6 +290,7 @@ nav{
     padding-bottom: 12px;
     border: var(--hostpital-green) 1px solid;
     border-radius: 20px;
+    background-color: var(--white);
 }
 .one-product-image{
     width: 100%;
@@ -315,7 +316,7 @@ nav{
     width: 360px;
 }
 .one-product-detail-close{
-    background: var(--white);
+    background: grey;
     width: 14px;
     height: 14px;
     position: absolute;
