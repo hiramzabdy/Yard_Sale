@@ -40,8 +40,63 @@ function toggleAside(){
     aside.classList.toggle("inactive")
 }
 
-const products = []
+function renderProducts(arr){
+    //It's not that I forgot...
+    for (const product of arr) {
+        let productCard = document.createElement("div")
+        productCard.classList.add("card")
+    
+        let productImg = document.createElement("img")
+        productImg.setAttribute("src", product.image)
+        productImg.setAttribute("alt", product.name)
+    
+        let productInfo = document.createElement("div")
+        productInfo.classList.add("product-info")
+    
+        let productPrice = document.createElement("div")
+        productPrice.classList.add("price")
+    
+        let priceP = document.createElement("p")
+        priceP.innerText = "$" + product.price
+        let nameP = document.createElement("p")
+        nameP.innerText = product.name
+    
+        let productFigure = document.createElement("figure")
+        let imgCart = document.createElement("img")
+        imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg")
+    
+        productPrice.appendChild(priceP)
+        productPrice.appendChild(nameP)
+        productFigure.appendChild(imgCart)
+        productInfo.appendChild(productPrice)
+        productInfo.appendChild(productFigure)
+        productCard.appendChild(productImg)
+        productCard.appendChild(productInfo)
+    
+        cardsContainer.appendChild(productCard)
+    }
+    //...I did it both ways
+    arr.forEach((product) => {
+        productCard = `
+            <div class="card">
+            <img src="${product.image}" alt="${product.name}">
+            <div class="product-info">
+                <div>
+                    <p>$${product.price}</p>
+                    <p>${product.name}</p>
+                </div>
+                <figure>
+                    <img src="./icons/bt_add_to_cart.svg" alt="">
+                </figure>
+            </div>    
+            </div>
+        `
+        cardsContainer.innerHTML += productCard   
+    }
+    )
+    }
 
+const products = []
 products.push({
     name: "Bike",
     price: 999,
@@ -57,63 +112,10 @@ products.push({
     price: 799,
     image: "https://m.media-amazon.com/images/I/715zrA5cmLL.jpg"
 })
-
 products.push({
     name: "S23 Ultra",
     price: 1199,
     image: "https://cdn1.coppel.com/images/catalog/pm/2003883-1.jpg"
 })
 
-//It's not that I forgot, I did it both ways
-for (const product of products) {
-    let productCard = document.createElement("div")
-    productCard.classList.add("card")
-
-    let productImg = document.createElement("img")
-    productImg.setAttribute("src", product.image)
-    productImg.setAttribute("alt", product.name)
-
-    let productInfo = document.createElement("div")
-    productInfo.classList.add("product-info")
-
-    let productPrice = document.createElement("div")
-    productPrice.classList.add("price")
-
-    let priceP = document.createElement("p")
-    priceP.innerText = "$" + product.price
-    let nameP = document.createElement("p")
-    nameP.innerText = product.name
-
-    let productFigure = document.createElement("figure")
-    let imgCart = document.createElement("img")
-    imgCart.setAttribute("src", "./icons/bt_add_to_cart.svg")
-
-    productPrice.appendChild(priceP)
-    productPrice.appendChild(nameP)
-    productFigure.appendChild(imgCart)
-    productInfo.appendChild(productPrice)
-    productInfo.appendChild(productFigure)
-    productCard.appendChild(productImg)
-    productCard.appendChild(productInfo)
-
-    cardsContainer.appendChild(productCard)
-}
-products.forEach((product) => {
-    productCard = `
-        <div class="card">
-        <img src="${product.image}" alt="${product.name}">
-        <div class="product-info">
-            <div>
-                <p>${product.price}</p>
-                <p>${product.name}</p>
-            </div>
-            <figure>
-                <img src="./icons/bt_add_to_cart.svg" alt="">
-            </figure>
-        </div>    
-        </div>
-    `
-
-    cardsContainer.innerHTML += productCard   
-}
-)
+renderProducts(products)
